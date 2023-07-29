@@ -6,8 +6,7 @@ import { router } from "./src/routes/routes.js";
 import { corsAllow } from "./src/middlewares/CORS.js";
 
 const { PORT = 3000, MONGODB_URL } = process.env;
-console.log('MONGODB_URL',MONGODB_URL)
-// useNewUrlParser, useCreateIndex, useFindAndModify как я понял, больше не нужны в mongo 6
+
 try {
   await mongoose.connect(MONGODB_URL);
   console.log("Database connection success");
@@ -17,8 +16,9 @@ try {
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(corsAllow);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", router);
 
 

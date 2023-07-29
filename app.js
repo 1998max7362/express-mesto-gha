@@ -1,5 +1,6 @@
 import express from "express";
 import { mongoose } from "mongoose";
+import { router } from "./src/routes/routes.js";
 
 const { PORT = 3000 } = process.env;
 

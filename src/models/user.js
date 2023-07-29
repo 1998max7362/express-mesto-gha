@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   name: {
     type: String, // имя — это строка
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String, // имя — это строка
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
-  } 
+  },
 });
 
-module.exports = mongoose.model('user', userSchema);
+export default model("user", userSchema);

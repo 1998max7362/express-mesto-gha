@@ -2,7 +2,7 @@
   "name": "mestobackend",
   "version": "1.0.0",
   "description": "",
-  "main": "App/app.js",
+  "main": "app.js",
   "scripts": {
     "start": "app.js",
     "dev": "nodemon app.js",
@@ -20,5 +20,6 @@
   "devDependencies": {
     "eslint": "^8.46.0",
     "nodemon": "^3.0.1"
-  }
+  },
+  "type": "module"
 }

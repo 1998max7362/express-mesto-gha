@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import { getUsers } from "../controllers/getUsers.js";
-import { getUserById } from "../controllers/getUserById.js";
-import { postUser } from "../controllers/postUser.js";
+import { getUsers } from "../controllers/Users/getUsers.js";
+import { getUserById } from "../controllers/Users/getUserById.js";
+import { postUser } from "../controllers/Users/postUser.js";
 
 const router = Router();
 

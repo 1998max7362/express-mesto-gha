@@ -4,7 +4,8 @@
   "description": "",
   "main": "App/app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "app.js",
+    "dev": "nodemon app.js",
     "lint": "npx eslint"
   },
   "keywords": [],

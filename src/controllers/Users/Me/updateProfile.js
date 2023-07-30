@@ -7,7 +7,7 @@ export const updateProfile = async (req, res, next) => {
     const newUser = await user.findByIdAndUpdate(
       _id,
       { name, about },
-      { runValidators: true }
+      { runValidators: true, new: true }
     );
     res.send({ user: newUser });
   } catch (err) {

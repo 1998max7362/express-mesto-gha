@@ -4,6 +4,7 @@ import 'dotenv/config'
 import { mongoose } from "mongoose";
 import { router } from "./src/routes/routes.js";
 import { corsAllow } from "./src/middlewares/CORS.js";
+import { auth } from "./src/middlewares/tempAuth.js";
 
 const { PORT = 3000, MONGODB_URL } = process.env;
 
@@ -19,6 +20,7 @@ const app = express();
 app.use(corsAllow);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(auth);
 app.use("/", router);
 
 

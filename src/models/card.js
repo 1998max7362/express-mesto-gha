@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, mongoose } from "mongoose";
 
 const cardSchema = new Schema({
   name: {

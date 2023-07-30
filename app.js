@@ -4,7 +4,6 @@ import "dotenv/config";
 import { mongoose } from "mongoose";
 import { router } from "./src/routes/routes.js";
 import { corsAllow } from "./src/middlewares/CORS.js";
-import { auth } from "./src/middlewares/tempAuth.js";
 import { errorHandler } from "./src/middlewares/Errors/errorHandler.js";
 
 const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
@@ -22,7 +21,13 @@ const app = express();
 app.use(corsAllow);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(auth);
+// app.use(auth);
+app.use((req, res, next) => {
+  req.user = {
+    _id: "64c5a76b391b53c26311597f", // вставьте сюда _id созданного в предыдущем пункте пользователя
+  };
+  next();
+});
 app.use("/", router);
 app.use(errorHandler);
 

@@ -10,5 +10,5 @@ export const errorHandler = (err, req, res, next) => {
     castErrorHandler(err, req, res)
     return
   }
-  res.status(500).json({error: err.stack})
+  res.status(500).json({message: err.stack})
 };

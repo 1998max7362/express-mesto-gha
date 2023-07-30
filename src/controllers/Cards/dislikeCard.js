@@ -9,7 +9,7 @@ export const dislikeCard = async (req, res, next) => {
       { $pull: { likes: user_id } },
       { new: true, runValidators: true }
     );
-    res.send({ card: newCard, error: false });
+    res.send({ card: newCard });
   } catch (err) {
     next(err);
   }

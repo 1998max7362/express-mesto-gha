@@ -9,7 +9,7 @@ export const updateAvatar = async (req, res, next) => {
       { avatar },
       { runValidators: true }
     );
-    res.send({ user: newUser, error: false });
+    res.send({ user: newUser });
   } catch (err) {
     next(err);
   }

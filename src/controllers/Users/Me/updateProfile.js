@@ -9,7 +9,7 @@ export const updateProfile = async (req, res, next) => {
       { name, about },
       { runValidators: true }
     );
-    res.send({ user: newUser, error: false });
+    res.send({ user: newUser });
   } catch (err) {
     next(err);
   }

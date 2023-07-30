@@ -9,7 +9,7 @@ export const likeCard = async (req, res, next) => {
       { $addToSet: { likes: user_id } },
       { new: true, runValidators: true }
     );
-    res.send({ card: newCard, error: false });
+    res.send({ card: newCard });
   } catch (err) {
     next(err);
   }

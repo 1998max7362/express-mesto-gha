@@ -8,6 +8,8 @@ import { getCardById } from "../controllers/Cards/getCardById.js";
 import { postCard } from "../controllers/Cards/postCard.js";
 import { updateAvatar } from "../controllers/Users/Me/updateAvatar.js";
 import { updateProfile } from "../controllers/Users/Me/updateProfile.js";
+import { likeCard } from "../controllers/Cards/likeCard.js";
+import { dislikeCard } from "../controllers/Cards/dislikeCard.js";
 
 const router = Router();
 
@@ -20,5 +22,7 @@ router.patch("/users/me/avatar", updateAvatar);
 router.get("/cards", getCards);
 router.get("/cards/:cardId", getCardById);
 router.post("/cards", postCard);
+router.put("/cards/:cardId/likes", likeCard);
+router.delete("/cards/:cardId/likes", dislikeCard);
 
 export { router };

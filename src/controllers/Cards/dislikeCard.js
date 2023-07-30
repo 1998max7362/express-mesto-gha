@@ -10,7 +10,6 @@ export const dislikeCard = async (req, res, next) => {
       { $pull: { likes: user_id } },
       { new: true, runValidators: true }
     );
-    console.log(newCard)
     if (!newCard) {
       throw new notFoundIdError('card');
     }

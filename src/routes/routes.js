@@ -12,7 +12,7 @@ const router = Router();
 router.get("/users", getUsers);
 router.get("/users/:userId", getUserById);
 router.post("/users", postUser);
-router.get("/cards ", getCards);
+router.get("/cards", getCards);
 router.get("/cards/:cardId", getCardById);
 router.post("/cards", postCard);
 

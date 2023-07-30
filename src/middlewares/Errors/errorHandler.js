@@ -1,7 +1,8 @@
 import { validatorErrorHandler } from "./validatorErrorHandler.js";
 import { castErrorHandler } from "./castErrorHandler.js";
 
-export const errorHandler = ({err, req, res}) => {
+export const errorHandler = (err, req, res, next) => {
+  console.log('зашли в ошибку')
   if (err.name === "ValidationError"){
     validatorErrorHandler(err, req, res)
     return

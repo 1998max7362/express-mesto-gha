@@ -11,7 +11,6 @@ export const dislikeCard = async (req, res) => {
     );
     res.send({ card: newCard, error: false });
   } catch (err) {
-    console.log('err.model',err.model)
-    res.status(500).send({ error: true, errorMessage: err.message });
+    next(err);
   }
 };

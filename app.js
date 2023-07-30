@@ -1,10 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
-import 'dotenv/config'
+import "dotenv/config";
 import { mongoose } from "mongoose";
 import { router } from "./src/routes/routes.js";
 import { corsAllow } from "./src/middlewares/CORS.js";
 import { auth } from "./src/middlewares/tempAuth.js";
+import { errorHandler } from "./src/middlewares/Errors/errorHandler.js";
 
 const { PORT = 3000, MONGODB_URL } = process.env;
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(auth);
 app.use("/", router);
+app.use(errorHandler);
 
 
 app.listen(PORT, () => {

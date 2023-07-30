@@ -11,6 +11,6 @@ export const likeCard = async (req, res) => {
     );
     res.send({ card: newCard, error: false });
   } catch (err) {
-    res.status(500).send({ error: true, errorMessage: err.message });
+    next(err);
   }
 };

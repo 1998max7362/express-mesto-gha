@@ -7,6 +7,6 @@ export const postCard = async (req, res) => {
     const newCard = await card.create({ name, link, owner });
     res.send({ card: newCard, error: false });
   } catch (err) {
-    res.status(500).send({ error: true, errorMessage: err.message });
+    next(err);
   }
 };

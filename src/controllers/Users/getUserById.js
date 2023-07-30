@@ -7,6 +7,6 @@ export const getUserById = async (req, res) => {
     const users = await user.find({ _id });
     res.send(users);
   } catch (err) {
-    errorHandler({req, res, err})
+    next(err);
   }
 };

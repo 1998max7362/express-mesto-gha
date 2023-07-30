@@ -1,6 +1,6 @@
 import card from "../../models/card.js";
 
-export const postCard = async (req, res) => {
+export const postCard = async (req, res, next) => {
   const { name, link } = req.body;
   const owner = req.user._id;
   try {

@@ -1,7 +1,7 @@
 import user from "../../models/user.js";
 import { errorHandler } from "../../middlewares/Errors/errorHandler.js";
 
-export const getUserById = async (req, res) => {
+export const getUserById = async (req, res, next) => {
   const _id = req.params.userId;
   try {
     const users = await user.find({ _id });

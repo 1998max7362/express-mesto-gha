@@ -1,7 +1,7 @@
 
 const moderlToErrorMap = {
-    user: "Запрашиваемый пользователь не найден",
-    card: "Запрашиваемая карточка не найдена",
+    user: "Передан некорректный id пользователя",
+    card: "Передан некорректный id карточки",
 }
 
 const modelToErrorMapper = (modelName) =>{

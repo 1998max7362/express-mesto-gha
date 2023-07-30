@@ -1,4 +1,5 @@
 import card from "../../models/card.js";
+import { notFoundIdError } from "../../middlewares/Errors/notFoundId.js";
 
 export const dislikeCard = async (req, res, next) => {
   const cardId = req.params.cardId;
@@ -9,6 +10,10 @@ export const dislikeCard = async (req, res, next) => {
       { $pull: { likes: user_id } },
       { new: true, runValidators: true }
     );
+    console.log(newCard)
+    if (!newCard) {
+      throw new notFoundIdError('card');
+    }
     res.send({ card: newCard });
   } catch (err) {
     next(err);

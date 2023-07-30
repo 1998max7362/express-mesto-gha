@@ -22,7 +22,6 @@ const app = express();
 app.use(corsAllow);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(auth);
 app.use((req, res, next) => {
   req.user = {
     _id: "64c5a76b391b53c26311597f", // вставьте сюда _id созданного в предыдущем пункте пользователя

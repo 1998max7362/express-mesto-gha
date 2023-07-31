@@ -1,5 +1,5 @@
 import user from "../../models/user.js";
-import NotFoundIdError from "../../middlewares/Errors/notFoundId.js";
+import { NotFoundIdError } from "../../middlewares/Errors/notFoundId.js";
 
 const getUserById = async (req, res, next) => {
   const _id = req.params.userId;

@@ -1,6 +1,6 @@
 import user from "../../models/user.js";
 
-export const getUsers = async (req, res, next) => {
+const getUsers = async (req, res, next) => {
   try {
     const users = await user.find({});
     res.send(users);
@@ -8,3 +8,4 @@ export const getUsers = async (req, res, next) => {
     next(err);
   }
 };
+export default getUsers;

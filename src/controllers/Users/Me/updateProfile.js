@@ -1,16 +1,18 @@
 import user from "../../../models/user.js";
 
-export const updateProfile = async (req, res, next) => {
+const updateProfile = async (req, res, next) => {
   const { name, about } = req.body;
-  const _id = req.user._id;
+  const { _id } = req.user;
   try {
     const newUser = await user.findByIdAndUpdate(
       _id,
       { name, about },
-      { runValidators: true, new: true }
+      { runValidators: true, new: true },
     );
     res.send({ user: newUser });
   } catch (err) {
     next(err);
   }
 };
+
+export default updateProfile;

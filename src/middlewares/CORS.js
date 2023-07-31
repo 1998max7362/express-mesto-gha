@@ -1,4 +1,4 @@
-export const corsAllow = (req, res, next)=> {
+const corsAllow = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -8,3 +8,5 @@ export const corsAllow = (req, res, next)=> {
 
   next();
 };
+
+export default corsAllow;

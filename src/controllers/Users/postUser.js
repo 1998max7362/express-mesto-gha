@@ -1,6 +1,6 @@
 import user from "../../models/user.js";
 
-export const postUser = async (req, res, next) => {
+const postUser = async (req, res, next) => {
   const { name, about, avatar } = req.body;
   try {
     const newUser = await user.create({ name, about, avatar });
@@ -9,3 +9,5 @@ export const postUser = async (req, res, next) => {
     next(err);
   }
 };
+
+export default postUser;

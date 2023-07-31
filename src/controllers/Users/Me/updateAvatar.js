@@ -1,8 +1,8 @@
 import user from "../../../models/user.js";
 
-export const updateAvatar = async (req, res, next) => {
+const updateAvatar = async (req, res, next) => {
   const { avatar } = req.body;
-  const _id = req.user._id;
+  const { _id } = req.user;
   try {
     const newUser = await user.findByIdAndUpdate(
       _id,
@@ -14,3 +14,5 @@ export const updateAvatar = async (req, res, next) => {
     next(err);
   }
 };
+
+export default updateAvatar;

@@ -1,20 +1,22 @@
 import card from "../../models/card.js";
-import { notFoundIdError } from "../../middlewares/Errors/notFoundId.js";
+import NotFoundIdError from "../../middlewares/Errors/notFoundId.js";
 
-export const likeCard = async (req, res, next) => {
-  const cardId = req.params.cardId;
-  const user_id = req.user._id;
+const likeCard = async (req, res, next) => {
+  const { cardId } = req.params;
+  const { _id } = req.user;
   try {
     const newCard = await card.findByIdAndUpdate(
       cardId,
-      { $addToSet: { likes: user_id } },
-      { new: true, runValidators: true }
+      { $addToSet: { likes: _id } },
+      { new: true, runValidators: true },
     );
     if (!newCard) {
-      throw new notFoundIdError('card');
+      throw new NotFoundIdError("card");
     }
     res.send({ card: newCard });
   } catch (err) {
     next(err);
   }
 };
+
+export default likeCard;

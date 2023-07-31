@@ -1,15 +1,16 @@
 import card from "../../models/card.js";
-import { notFoundIdError } from "../../middlewares/Errors/notFoundId.js";
+import NotFoundIdError from "../../middlewares/Errors/notFoundId.js";
 
-export const deleteCard = async (req, res, next) => {
-  const cardId = req.params.cardId;
+const deleteCard = async (req, res, next) => {
+  const { cardId } = req.params;
   try {
     const cards = await card.findByIdAndRemove({ _id: cardId });
     if (!cards) {
-      throw new notFoundIdError("card");
+      throw new NotFoundIdError("card");
     }
     res.send(cards);
   } catch (err) {
     next(err);
   }
 };
+export default deleteCard;

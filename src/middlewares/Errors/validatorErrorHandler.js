@@ -1,6 +1,10 @@
-export const validatorErrorHandler = (err, req, res) => {
-  const pathsErrors = Object.keys(err.errors)
+const validatorErrorHandler = (err, req, res) => {
+  const pathsErrors = Object.keys(err.errors);
   res
     .status(400)
-    .send({ message: `Переданы некорректные данные в полях ${pathsErrors.join(', ')}` });
+    .send({
+      message: `Переданы некорректные данные в полях ${pathsErrors.join(", ")}`,
+    });
 };
+
+export default validatorErrorHandler;

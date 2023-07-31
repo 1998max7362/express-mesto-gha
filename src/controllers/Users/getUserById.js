@@ -1,15 +1,17 @@
 import user from "../../models/user.js";
-import { notFoundIdError } from "../../middlewares/Errors/notFoundId.js";
+import NotFoundIdError from "../../middlewares/Errors/notFoundId.js";
 
-export const getUserById = async (req, res, next) => {
+const getUserById = async (req, res, next) => {
   const _id = req.params.userId;
   try {
-    const users = await user.findById( _id);
+    const users = await user.findById(_id);
     if (!users) {
-      throw new notFoundIdError('user');
+      throw new NotFoundIdError("user");
     }
     res.send(users);
   } catch (err) {
     next(err);
   }
 };
+
+export default getUserById;

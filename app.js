@@ -2,10 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import { mongoose } from "mongoose";
-import router from "./src/routes/routes.js";
 import corsAllow from "./src/middlewares/CORS.js";
 import errorHandler from "./src/middlewares/Errors/errorHandler.js";
 import wrongRouteError from "./src/middlewares/Errors/wrongRoute.js";
+import cardRouter from "./src/routes/cardRoutes.js";
+import userRouter from "./src/routes/userRoutes.js";
 
 const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 
@@ -27,7 +28,9 @@ app.use((req, res, next) => {
   };
   next();
 });
-app.use("/", router);
+app.use("/users", userRouter);
+app.use("/cards", cardRouter);
+
 app.use(errorHandler);
 app.use("*", wrongRouteError);
 

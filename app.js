@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import { mongoose } from "mongoose";
-import helmet from "helmet";
+// import helmet from "helmet"; // c Helmet падают автотесты
 import corsAllow from "./src/middlewares/CORS.js";
 import errorHandler from "./src/middlewares/Errors/errorHandler.js";
 import wrongRouteError from "./src/middlewares/Errors/wrongRoute.js";
@@ -22,7 +22,7 @@ try {
 const app = express();
 app.disable("x-powered-by");
 app.use(limiter);
-app.use(helmet);
+// app.use(helmet);
 app.use(corsAllow);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

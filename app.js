@@ -2,16 +2,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import { mongoose } from "mongoose";
+import helmet from "helmet";
 import corsAllow from "./src/middlewares/CORS.js";
 import errorHandler from "./src/middlewares/Errors/errorHandler.js";
 import wrongRouteError from "./src/middlewares/Errors/wrongRoute.js";
 import cardRouter from "./src/routes/cardRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
 import limiter from "./src/middlewares/rateLimit.js";
-import helmet from "helmet";
 
-const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
-  process.env;
+const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 
 try {
   await mongoose.connect(MONGODB_URL);

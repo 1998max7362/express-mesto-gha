@@ -30,9 +30,8 @@ app.use((req, res, next) => {
 });
 app.use("/users", userRouter);
 app.use("/cards", cardRouter);
-
-app.use(errorHandler);
 app.use("*", wrongRouteError);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

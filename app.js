@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 app.use("/", router);
 app.use(errorHandler);
-app.use("/:params", wrongRouteError);
+app.use("*", wrongRouteError);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

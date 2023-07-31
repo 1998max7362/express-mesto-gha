@@ -2,7 +2,10 @@ import validatorErrorHandler from "./validatorErrorHandler.js";
 import castErrorHandler from "./castErrorHandler.js";
 import { notFoundIdHandler } from "./notFoundId.js";
 
-const errorHandler = (err, req, res) => {
+// Тут нужен next, чтобы первым параметров была ошибка
+// Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
+// eslint-disable-next-line no-unused-vars
+const errorHandler = (err, req, res, next) => {
   if (err.name === "ValidationError") {
     validatorErrorHandler(err, req, res);
     return;

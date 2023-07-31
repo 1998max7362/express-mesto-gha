@@ -1,5 +1,5 @@
 import validatorErrorHandler from "./validatorErrorHandler.js";
-import { castErrorHandler } from "./castErrorHandler.js";
+import castErrorHandler from "./castErrorHandler.js";
 import { notFoundIdHandler } from "./notFoundId.js";
 
 const errorHandler = (err, req, res) => {

@@ -1,16 +1,16 @@
 import { Router } from "express";
 
-import { getUsers } from "../controllers/Users/getUsers.js";
-import { getUserById } from "../controllers/Users/getUserById.js";
-import { postUser } from "../controllers/Users/postUser.js";
-import { getCards } from "../controllers/Cards/getCards.js";
-import { getCardById } from "../controllers/Cards/getCardById.js";
-import { postCard } from "../controllers/Cards/postCard.js";
-import { updateAvatar } from "../controllers/Users/Me/updateAvatar.js";
-import { updateProfile } from "../controllers/Users/Me/updateProfile.js";
-import { likeCard } from "../controllers/Cards/likeCard.js";
+import getUsers from "../controllers/Users/getUsers.js";
+import getUserById from "../controllers/Users/getUserById.js";
+import postUser from "../controllers/Users/postUser.js";
+import getCards from "../controllers/Cards/getCards.js";
+import getCardById from "../controllers/Cards/getCardById.js";
+import postCard from "../controllers/Cards/postCard.js";
+import updateAvatar from "../controllers/Users/Me/updateAvatar.js";
+import updateProfile from "../controllers/Users/Me/updateProfile.js";
+import likeCard from "../controllers/Cards/likeCard.js";
 import dislikeCard from "../controllers/Cards/dislikeCard.js";
-import { deleteCard } from "../controllers/Cards/deleteCard.js";
+import deleteCard from "../controllers/Cards/deleteCard.js";
 
 const router = Router();
 

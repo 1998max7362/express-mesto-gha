@@ -7,7 +7,7 @@ const updateAvatar = async (req, res, next) => {
     const newUser = await user.findByIdAndUpdate(
       _id,
       { avatar },
-      { runValidators: true, new: true }
+      { runValidators: true, new: true },
     );
     res.send({ user: newUser });
   } catch (err) {

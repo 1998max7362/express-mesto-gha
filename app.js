@@ -2,10 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import { mongoose } from "mongoose";
-import { router } from "./src/routes/routes.js";
-import { corsAllow } from "./src/middlewares/CORS.js";
-import { errorHandler } from "./src/middlewares/Errors/errorHandler.js";
-import { wrongRouteError } from "./src/middlewares/Errors/wrongRoute.js";
+import router from "./src/routes/routes.js";
+import corsAllow from "./src/middlewares/CORS.js";
+import errorHandler from "./src/middlewares/Errors/errorHandler.js";
+import wrongRouteError from "./src/middlewares/Errors/wrongRoute.js";
 
 const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 

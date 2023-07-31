@@ -9,8 +9,7 @@ import cardRouter from "./src/routes/cardRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
 import limiter from "./src/middlewares/rateLimit.js";
 
-const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
-  process.env;
+const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 
 try {
   await mongoose.connect(MONGODB_URL);

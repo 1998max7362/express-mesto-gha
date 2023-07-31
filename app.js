@@ -7,8 +7,7 @@ import { corsAllow } from "./src/middlewares/CORS.js";
 import { errorHandler } from "./src/middlewares/Errors/errorHandler.js";
 import { wrongRouteError } from "./src/middlewares/Errors/wrongRoute.js";
 
-const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
-  process.env;
+const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 
 try {
   await mongoose.connect(MONGODB_URL);
@@ -30,7 +29,7 @@ app.use((req, res, next) => {
 });
 app.use("/", router);
 app.use(errorHandler);
-app.use('/:params', wrongRouteError)
+app.use("/:params", wrongRouteError);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

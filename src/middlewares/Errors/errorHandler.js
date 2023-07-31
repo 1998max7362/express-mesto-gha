@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
     notFoundIdHandler(err, req, res);
     return;
   }
-  res.status(500).json({ message: err.stack });
+  res.status(500).json({ message: "Произошла ошибккаа на сервере" });
 };
 
 export default errorHandler;

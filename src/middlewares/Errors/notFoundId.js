@@ -1,3 +1,5 @@
+const ERROR_CODE = 404;
+
 export class NotFoundIdError extends Error {
   constructor(path) {
     super("");
@@ -15,5 +17,5 @@ const pathToErrorMapper = (modelName) => pathToErrorMap[modelName];
 
 export const notFoundIdHandler = (err, req, res) => {
   const { path } = err;
-  res.status(404).send({ message: pathToErrorMapper(path) });
+  res.status(ERROR_CODE).send({ message: pathToErrorMapper(path) });
 };

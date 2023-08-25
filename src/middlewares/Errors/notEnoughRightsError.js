@@ -1,4 +1,4 @@
-const ERROR_CODE = 401;
+const ERROR_CODE = 403;
 
 export class NotEnoughRightsError extends Error {
   constructor() {

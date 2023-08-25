@@ -4,11 +4,7 @@ import { NotAuthorizedError } from "./Errors/NotAuthorizedError.js";
 const { SECRET_KEY = "some-secret-key" } = process.env;
 
 const auth = (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization || !authorization.startsWith("Bearer ")) {
-    throw new NotAuthorizedError();
-  }
-  const token = authorization.replace("Bearer ", "");
+  const token = req.cookies.jwt;
 
   let payload;
 

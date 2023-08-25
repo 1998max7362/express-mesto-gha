@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import "dotenv/config";
 import { errors } from "celebrate";
 import { mongoose } from "mongoose";
+import cookieParser from "cookie-parser";
 // import helmet from "helmet"; // c Helmet падают автотесты
 import corsAllow from "./src/middlewares/CORS.js";
 import errorHandler from "./src/middlewares/Errors/errorHandler.js";
@@ -23,6 +24,7 @@ try {
 }
 
 const app = express();
+app.use(cookieParser());
 app.disable("x-powered-by");
 app.use(limiter);
 // app.use(helmet);

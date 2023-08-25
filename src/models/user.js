@@ -37,12 +37,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 8,
+    select: false,
   },
 });
 
 userSchema.statics.findUserByCredentials =
   async function findUserByCredentials({ email, password }) {
-    const foundUser = await this.findOne({ email });
+    const foundUser = await this.findOne({ email }).select("+password");
     if (!foundUser) {
       throw new IncorrectUserEmailOrPasswordError();
     }

@@ -11,7 +11,7 @@ import {
   postCardSchema,
   likeCardAchema,
   authorizedUserSchema,
-} from "../ValidationSchemas/validationSchemas.js";
+} from "../ValidationSchemas/ValidationSchemas.js";
 
 const cardRouter = Router();
 

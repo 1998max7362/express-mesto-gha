@@ -1,5 +1,6 @@
-import user from "../../models/user.js";
 import jwt from "jsonwebtoken";
+import user from "../../models/user.js";
+
 const { SECRET_KEY = "some-secret-key" } = process.env;
 
 const loginUser = async (req, res, next) => {

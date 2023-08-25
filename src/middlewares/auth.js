@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NotAuthorizedError } from "./Errors/NotAuthorizedError.js";
+
 const { SECRET_KEY = "some-secret-key" } = process.env;
 
 const auth = (req, res, next) => {

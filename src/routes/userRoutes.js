@@ -10,14 +10,14 @@ import {
   patchUserSchema,
   patchAvatarSchema,
   userIdSchema,
-} from "../ValidationSchemas/validationSchemas.js";
+} from "../ValidationSchemas/ValidationSchemas.js";
 
 const userRouter = Router();
 
 userRouter.get("/me", celebrate(authorizedUserSchema), getMe);
 userRouter.patch("/me", celebrate(patchUserSchema), updateProfile);
 userRouter.patch("/me/avatar", celebrate(patchAvatarSchema), updateAvatar);
-userRouter.get("/",celebrate(authorizedUserSchema), getUsers);
-userRouter.get("/:userId",celebrate(userIdSchema), getUserById);
+userRouter.get("/", celebrate(authorizedUserSchema), getUsers);
+userRouter.get("/:userId", celebrate(userIdSchema), getUserById);
 
 export default userRouter;

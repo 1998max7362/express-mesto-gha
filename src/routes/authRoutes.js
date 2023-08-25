@@ -3,7 +3,7 @@ import { celebrate } from "celebrate";
 
 import postUser from "../controllers/Users/postUser.js";
 import loginUser from "../controllers/Users/loginUser.js";
-import { signInSchema } from "../ValidationSchemas/validationSchemas.js";
+import { signInSchema } from "../ValidationSchemas/ValidationSchemas.js";
 
 const authRouter = Router();
 

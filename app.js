@@ -13,8 +13,7 @@ import limiter from "./src/middlewares/rateLimit.js";
 import authRouter from "./src/routes/authRoutes.js";
 import auth from "./src/middlewares/auth.js";
 
-const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
-  process.env;
+const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } = process.env;
 
 try {
   await mongoose.connect(MONGODB_URL);

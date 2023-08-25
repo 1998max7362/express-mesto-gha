@@ -1,4 +1,5 @@
 import Joi from "joi";
+import urlRegex from "../utils/constants.js";
 
 export const signInSchema = {
   body: Joi.object()
@@ -9,7 +10,7 @@ export const signInSchema = {
       password: Joi.string().required(),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().uri(),
+      avatar: Joi.string().uri().regex(urlRegex),
     })
     .unknown(true),
 };
@@ -33,7 +34,7 @@ export const postCardSchema = {
   body: Joi.object()
     .keys({
       name: Joi.string().min(2).max(30).required(),
-      link: Joi.string().uri().required(),
+      link: Joi.string().uri().required().regex(urlRegex),
     })
     .unknown(true),
   params: Joi.object()
@@ -74,7 +75,7 @@ export const patchUserSchema = {
 export const patchAvatarSchema = {
   body: Joi.object()
     .keys({
-      avatar: Joi.string().uri().required(),
+      avatar: Joi.string().uri().required().regex(urlRegex),
     })
     .unknown(true),
   params: Joi.object()
@@ -96,4 +97,3 @@ export const userIdSchema = {
     })
     .unknown(true),
 };
-

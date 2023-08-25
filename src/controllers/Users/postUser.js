@@ -18,6 +18,7 @@ const postUser = async (req, res, next) => {
       email,
       password: hash,
     });
+    delete newUser.password;
     res.send({ user: newUser });
   } catch (err) {
     next(err);

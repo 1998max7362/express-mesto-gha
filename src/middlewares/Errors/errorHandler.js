@@ -33,6 +33,10 @@ const errorHandler = (err, req, res, next) => {
     notEnoughRightsErrorHandler(err, req, res);
     return;
   }
+  if (err.code === 11000) {
+    res.status(409).json({ message: "Пользователь с данным e-mail уже существует" });
+    return;
+  }
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });
 };
 

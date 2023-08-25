@@ -37,6 +37,7 @@ const errorHandler = (err, req, res, next) => {
     res.status(409).json({ message: "Пользователь с данным e-mail уже существует" });
     return;
   }
+  console.log(err);
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });
 };
 

@@ -18,7 +18,6 @@ const loginUser = async (req, res, next) => {
       })
       .end();
   } catch (err) {
-    console.log("err");
     next(err);
   }
 };

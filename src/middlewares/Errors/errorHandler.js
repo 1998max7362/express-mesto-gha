@@ -1,6 +1,7 @@
 import validatorErrorHandler from "./validatorErrorHandler.js";
 import castErrorHandler from "./castErrorHandler.js";
 import { notFoundIdHandler } from "./notFoundId.js";
+import { incorrectUserEmailOrPassword } from "./incorrectUserEmailOrPasswordError.js";
 
 // Тут нужен next, чтобы первым параметров была ошибка
 // Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
@@ -16,6 +17,10 @@ const errorHandler = (err, req, res, next) => {
   }
   if (err.name === "notFoundId") {
     notFoundIdHandler(err, req, res);
+    return;
+  }
+  if (err.name === "incorrectUserEmailOrPassword") {
+    incorrectUserEmailOrPassword(err, req, res);
     return;
   }
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });

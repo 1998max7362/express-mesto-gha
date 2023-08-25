@@ -1,5 +1,7 @@
+import bcrypt from "bcrypt";
 import { Schema, model } from "mongoose";
 import validator from "validator";
+import { IncorrectUserEmailOrPasswordError } from "../middlewares/Errors/incorrectUserEmailOrPasswordError.js";
 
 const userSchema = new Schema({
   name: {
@@ -37,5 +39,19 @@ const userSchema = new Schema({
     minlength: 8,
   },
 });
+
+userSchema.statics.findUserByCredentials =
+  async function findUserByCredentials({ email, password }) {
+    const foundUser = await this.findOne({ email });
+    if (!foundUser) {
+      console.log('ошибка')
+      throw new IncorrectUserEmailOrPasswordError();
+    }
+    const matchPassword = await bcrypt.compare(password, foundUser.password);
+    if (!matchPassword) {
+      throw new IncorrectUserEmailOrPasswordError();
+    }
+    return foundUser;
+  };
 
 export default model("user", userSchema);

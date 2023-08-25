@@ -4,17 +4,17 @@ import { NotEnoughRightsError } from "../../middlewares/Errors/notEnoughRightsEr
 
 const deleteCard = async (req, res, next) => {
   const { cardId } = req.params;
-  const { userId } = req.user._id;
+  const userId = req.user._id;
   try {
-    // const foundCard = await card.findByIdAndRemove({ _id: cardId });
     const foundCard = await card.findById({ _id: cardId });
     if (!foundCard) {
       throw new NotFoundIdError("card");
     }
-    if (foundCard.owner !== userId) {
+    if (foundCard.owner.valueOf() !== userId) {
       throw new NotEnoughRightsError();
     }
-    res.send(foundCard);
+    const removedCard = await card.findByIdAndRemove({ _id: cardId });
+    res.send(removedCard);
   } catch (err) {
     next(err);
   }

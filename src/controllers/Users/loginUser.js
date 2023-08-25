@@ -1,11 +1,12 @@
 import user from "../../models/user.js";
 import jwt from "jsonwebtoken";
+const { SECRET_KEY = "some-secret-key" } = process.env;
 
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const foundUser = await user.findUserByCredentials({ email, password });
-    const token = jwt.sign({ _id: foundUser._id }, "some-secret-key", {
+    const token = jwt.sign({ _id: foundUser._id }, SECRET_KEY, {
       expiresIn: "7d",
     });
     res

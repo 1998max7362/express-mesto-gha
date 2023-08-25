@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
+import { errors } from "celebrate";
 import { mongoose } from "mongoose";
 // import helmet from "helmet"; // c Helmet падают автотесты
 import corsAllow from "./src/middlewares/CORS.js";
@@ -34,6 +35,7 @@ app.use("/", authRouter);
 app.use("/users", auth, userRouter);
 app.use("/cards", auth, cardRouter);
 app.use("*", wrongRouteError);
+app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {

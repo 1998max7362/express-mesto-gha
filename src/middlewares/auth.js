@@ -15,7 +15,6 @@ const auth = (req, res, next) => {
   } catch (err) {
     throw new NotAuthorizedError();
   }
-
   req.user = payload; // записываем пейлоуд в объект запроса
 
   next(); // пропускаем запрос дальше

@@ -3,6 +3,7 @@ import castErrorHandler from "./castErrorHandler.js";
 import { notFoundIdHandler } from "./notFoundId.js";
 import { incorrectUserEmailOrPasswordErrorHandler } from "./incorrectUserEmailOrPasswordError.js";
 import { notAuthorizedErrorHandler } from "./NotAuthorizedError.js";
+import { notEnoughRightsErrorHandler } from "./notEnoughRightsError.js";
 
 // Тут нужен next, чтобы первым параметров была ошибка
 // Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
@@ -26,6 +27,10 @@ const errorHandler = (err, req, res, next) => {
   }
   if (err.name === "NotAuthorized") {
     notAuthorizedErrorHandler(err, req, res);
+    return;
+  }
+  if (err.name === "notEnoughRights") {
+    notEnoughRightsErrorHandler(err, req, res);
     return;
   }
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });

@@ -16,7 +16,6 @@ const auth = (req, res, next) => {
     throw new NotAuthorizedError();
   }
   req.user = payload; // записываем пейлоуд в объект запроса
-
   next(); // пропускаем запрос дальше
 };
 

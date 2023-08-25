@@ -1,7 +1,8 @@
 import validatorErrorHandler from "./validatorErrorHandler.js";
 import castErrorHandler from "./castErrorHandler.js";
 import { notFoundIdHandler } from "./notFoundId.js";
-import { incorrectUserEmailOrPassword } from "./incorrectUserEmailOrPasswordError.js";
+import { incorrectUserEmailOrPasswordErrorHandler } from "./incorrectUserEmailOrPasswordError.js";
+import { notAuthorizedErrorHandler } from "./NotAuthorizedError.js";
 
 // Тут нужен next, чтобы первым параметров была ошибка
 // Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
@@ -20,7 +21,11 @@ const errorHandler = (err, req, res, next) => {
     return;
   }
   if (err.name === "incorrectUserEmailOrPassword") {
-    incorrectUserEmailOrPassword(err, req, res);
+    incorrectUserEmailOrPasswordErrorHandler(err, req, res);
+    return;
+  }
+  if (err.name === "NotAuthorized") {
+    notAuthorizedErrorHandler(err, req, res);
     return;
   }
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });

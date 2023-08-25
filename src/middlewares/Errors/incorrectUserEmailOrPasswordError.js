@@ -7,6 +7,6 @@ export class IncorrectUserEmailOrPasswordError extends Error {
   }
 }
 
-export const incorrectUserEmailOrPassword = (err, req, res) => {
+export const incorrectUserEmailOrPasswordErrorHandler = (err, req, res) => {
   res.status(ERROR_CODE).send({ message: "Неправильные почта или пароль" });
 };

@@ -10,6 +10,7 @@ import cardRouter from "./src/routes/cardRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
 import limiter from "./src/middlewares/rateLimit.js";
 import authRouter from "./src/routes/authRoutes.js";
+import auth from "./src/middlewares/auth.js";
 
 const { PORT = 3000, MONGODB_URL = "mongodb://0.0.0.0:27017/mestodb " } =
   process.env;
@@ -35,8 +36,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/", authRouter);
-app.use("/users", userRouter);
-app.use("/cards", cardRouter);
+
+app.use("/users", auth, userRouter);
+app.use("/cards", auth, cardRouter);
 app.use("*", wrongRouteError);
 app.use(errorHandler);
 

@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import validator from "validator";
 
 const userSchema = new Schema({
   name: {
@@ -6,21 +7,29 @@ const userSchema = new Schema({
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
     minlength: 2, // минимальная длина имени — 2 символа
     maxlength: 30, // а максимальная — 30 символов
+    default: "Жак-Ив Кусто",
   },
   about: {
     type: String, // about — это строка
     required: true, // оно должно быть у каждого пользователя, так что about — обязательное поле
     minlength: 2, // минимальная длина  — 2 символа
     maxlength: 30, // а максимальная — 30 символов
+    default: "Исследователь",
   },
   avatar: {
     type: String, // имя — это строка
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
+    default:
+      "https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png",
   },
   email: {
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: (value) => validator.isEmail(value),
+      message: "Некорректный e-mail", // это собщение никуда не выводится, но для себя я его добавли
+    },
   },
   password: {
     type: String,

@@ -17,15 +17,15 @@ export const signInSchema = {
 
 export const cardIdSchema = {
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
+    cardId: Joi.string().length(24).hex().required(),
   }),
 };
 
 export const likeCardAchema = {
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
+    cardId: Joi.string().length(24).hex().required(),
     user: Joi.object().keys({
-      _id: Joi.string().alphanum().length(24),
+      _id: Joi.string().length(24).hex().required(),
     }),
   }),
 };
@@ -40,7 +40,7 @@ export const postCardSchema = {
   params: Joi.object()
     .keys({
       user: Joi.object().keys({
-        _id: Joi.string().alphanum().length(24),
+        _id: Joi.string().length(24).hex().required(),
       }),
     })
     .unknown(true),
@@ -50,7 +50,7 @@ export const authorizedUserSchema = {
   params: Joi.object()
     .keys({
       user: Joi.object().keys({
-        _id: Joi.string().alphanum().length(24),
+        _id: Joi.string().length(24).hex().required(),
       }),
     })
     .unknown(true),
@@ -66,7 +66,7 @@ export const patchUserSchema = {
   params: Joi.object()
     .keys({
       user: Joi.object().keys({
-        _id: Joi.string().alphanum().length(24),
+        _id: Joi.string().length(24).hex().required(),
       }),
     })
     .unknown(true),
@@ -81,7 +81,7 @@ export const patchAvatarSchema = {
   params: Joi.object()
     .keys({
       user: Joi.object().keys({
-        _id: Joi.string().alphanum().length(24),
+        _id: Joi.string().length(24).hex().required(),
       }),
     })
     .unknown(true),
@@ -90,9 +90,9 @@ export const patchAvatarSchema = {
 export const userIdSchema = {
   params: Joi.object()
     .keys({
-      userId: Joi.string().alphanum().length(24),
+      userId: Joi.string().length(24).hex().required(),
       user: Joi.object().keys({
-        _id: Joi.string().alphanum().length(24),
+        _id: Joi.string().length(24).hex().required(),
       }),
     })
     .unknown(true),

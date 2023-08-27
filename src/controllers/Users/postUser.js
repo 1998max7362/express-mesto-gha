@@ -20,7 +20,7 @@ const postUser = async (req, res, next) => {
     });
     const resData = newUser.toObject();
     delete resData.password;
-    res.send({ user: resData });
+    res.status(201).send({ user: resData });
   } catch (err) {
     next(err);
   }

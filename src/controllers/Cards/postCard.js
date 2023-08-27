@@ -5,7 +5,7 @@ const postCard = async (req, res, next) => {
   const owner = req.user._id;
   try {
     const newCard = await card.create({ name, link, owner });
-    res.send({ card: newCard });
+    res.status(201).send({ card: newCard });
   } catch (err) {
     next(err);
   }

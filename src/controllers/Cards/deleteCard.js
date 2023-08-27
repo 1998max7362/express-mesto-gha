@@ -13,7 +13,7 @@ const deleteCard = async (req, res, next) => {
     if (foundCard.owner.valueOf() !== userId) {
       throw new NotEnoughRightsError();
     }
-    const removedCard = await card.findByIdAndRemove({ _id: cardId });
+    const removedCard = await card.deleteOne({ _id: cardId });
     res.send(removedCard);
   } catch (err) {
     next(err);

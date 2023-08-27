@@ -1,52 +1,36 @@
-import validatorErrorHandler from "./validatorErrorHandler.js";
-import castErrorHandler from "./castErrorHandler.js";
-import { notFoundIdHandler } from "./customErrors/notFoundId.js";
-import { incorrectUserEmailOrPasswordErrorHandler } from "./customErrors/incorrectUserEmailOrPasswordError.js";
-import { notAuthorizedErrorHandler } from "./customErrors/NotAuthorizedError.js";
-import { notEnoughRightsErrorHandler } from "./customErrors/notEnoughRightsError.js";
+import validationErrorTransform from "./validationErrorTransform.js";
+import castErrorTransform from "./castErrorTransform.js";
+import error11000Transform from "./error11000Transform.js";
 
-// Тут нужен next, чтобы первым параметров была ошибка
-// Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
-// eslint-disable-next-line no-unused-vars
-const errorHandler = (err, req, res, next) => {
+// В ревью было сказано, что для подобных ошибок стоит делать проверку в
+// самом контроллере и там вызывать уже кастомную ошибку.
+// Мне показалось, что это как будто бы много лишнего кода.
+// Так как ошибки валидации и ошибки cast нужно проверять действительно
+// во многих контроллерах. Поэтому данный код решил добавить в сам обработчик ошибок
+// Не уверен, что это правильно, но такой вариант позволит
+// в будуещем не замарачиваться ValidationError и CastError
+// так как они сами будут везде обрабатываться
+const errorPreHandler = (err) => {
   if (err.name === "ValidationError") {
-    validatorErrorHandler(err, req, res);
+    validationErrorTransform(err);
     return;
   }
   if (err.name === "CastError") {
-    castErrorHandler(err, req, res);
-    return;
-  }
-  if (err.name === "notFoundId") {
-    notFoundIdHandler(err, req, res);
-    return;
-  }
-  if (err.name === "incorrectUserEmailOrPassword") {
-    incorrectUserEmailOrPasswordErrorHandler(err, req, res);
-    return;
-  }
-  if (err.name === "NotAuthorized") {
-    notAuthorizedErrorHandler(err, req, res);
-    return;
-  }
-  if (err.name === "notEnoughRights") {
-    notEnoughRightsErrorHandler(err, req, res);
+    castErrorTransform(err);
     return;
   }
   if (err.code === 11000) {
-    res
-      .status(409)
-      .json({ message: "Пользователь с данным e-mail уже существует" });
-    return;
+    error11000Transform(err);
   }
-  console.log(err);
-  res.status(500).json({ message: "Произошла ошибккаа на сервере" });
 };
 
-const errorHandler = (err, reeq, res, next) => {
+// Тут нужен next, чтобы первым параметров была ошибка
+// Если убрать next, то в переменную err кладется req, в req кладется res, в res кладется next
+// eslint-disable-next-line no-unused-vars
+const errorHandler = (err, req, res, next) => {
+  errorPreHandler(err);
   const statusCode = err.statusCode || 500;
-  const message =
-    statusCode === 500 ? "На сервере произошла ошибка" : err.message;
+  const message = statusCode === 500 ? "На сервере произошла ошибка" : err.message;
   res.status(statusCode).send({ message });
 };
 

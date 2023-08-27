@@ -1,5 +1,3 @@
-const ERROR_CODE = 400;
-
 const moderlToErrorMap = {
   user: "Передан некорректный id пользователя",
   card: "Передан некорректный id карточки",
@@ -7,9 +5,11 @@ const moderlToErrorMap = {
 
 const modelToErrorMapper = (modelName) => moderlToErrorMap[modelName];
 
-const castErrorHandler = (err, req, res) => {
+/* eslint-disable no-param-reassign */
+const castErrorTransform = (err) => {
   const { modelName } = err.model;
-  res.status(ERROR_CODE).send({ message: modelToErrorMapper(modelName) });
+  err.statusCode = 400;
+  err.message = modelToErrorMapper(modelName);
 };
 
-export default castErrorHandler;
+export default castErrorTransform;

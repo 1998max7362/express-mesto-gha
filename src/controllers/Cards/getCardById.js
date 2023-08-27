@@ -1,5 +1,5 @@
 import card from "../../models/card.js";
-import { NotFoundIdError } from "../../middlewares/Errors/customErrors/notFoundId.js";
+import NotFoundIdError from "../../middlewares/Errors/customErrors/NotFoundIdError.js";
 
 const getCardById = async (req, res, next) => {
   const { cardId } = req.params;

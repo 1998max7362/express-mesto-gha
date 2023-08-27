@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { Schema, model } from "mongoose";
 import validator from "validator";
-import { IncorrectUserEmailOrPasswordError } from "../middlewares/Errors/customErrors/incorrectUserEmailOrPasswordError.js";
+import IncorrectUserEmailOrPasswordError from "../middlewares/Errors/customErrors/incorrectUserEmailOrPasswordError.js";
 
 const userSchema = new Schema({
   name: {

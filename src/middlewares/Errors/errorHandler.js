@@ -1,9 +1,9 @@
 import validatorErrorHandler from "./validatorErrorHandler.js";
 import castErrorHandler from "./castErrorHandler.js";
-import { notFoundIdHandler } from "./notFoundId.js";
-import { incorrectUserEmailOrPasswordErrorHandler } from "./incorrectUserEmailOrPasswordError.js";
-import { notAuthorizedErrorHandler } from "./NotAuthorizedError.js";
-import { notEnoughRightsErrorHandler } from "./notEnoughRightsError.js";
+import { notFoundIdHandler } from "./customErrors/notFoundId.js";
+import { incorrectUserEmailOrPasswordErrorHandler } from "./customErrors/incorrectUserEmailOrPasswordError.js";
+import { notAuthorizedErrorHandler } from "./customErrors/NotAuthorizedError.js";
+import { notEnoughRightsErrorHandler } from "./customErrors/notEnoughRightsError.js";
 
 // Тут нужен next, чтобы первым параметров была ошибка
 // Если убрать next,, то в переменную err кладется req, в req кладется res, в res кладется next
@@ -34,11 +34,20 @@ const errorHandler = (err, req, res, next) => {
     return;
   }
   if (err.code === 11000) {
-    res.status(409).json({ message: "Пользователь с данным e-mail уже существует" });
+    res
+      .status(409)
+      .json({ message: "Пользователь с данным e-mail уже существует" });
     return;
   }
   console.log(err);
   res.status(500).json({ message: "Произошла ошибккаа на сервере" });
+};
+
+const errorHandler = (err, reeq, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message =
+    statusCode === 500 ? "На сервере произошла ошибка" : err.message;
+  res.status(statusCode).send({ message });
 };
 
 export default errorHandler;

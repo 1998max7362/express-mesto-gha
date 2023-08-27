@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 // import helmet from "helmet"; // c Helmet падают автотесты
 import corsAllow from "./src/middlewares/CORS.js";
 import errorHandler from "./src/middlewares/Errors/errorHandler.js";
-import wrongRouteError from "./src/middlewares/Errors/wrongRoute.js";
+import wrongRouteErrorHandler from "./src/middlewares/Errors/wrongRouteErrorHandler.js";
 import cardRouter from "./src/routes/cardRoutes.js";
 import userRouter from "./src/routes/userRoutes.js";
 import limiter from "./src/middlewares/rateLimit.js";
@@ -35,7 +35,7 @@ app.use("/", authRouter);
 
 app.use("/users", auth, userRouter);
 app.use("/cards", auth, cardRouter);
-app.use("*", wrongRouteError);
+app.use("*", wrongRouteErrorHandler);
 app.use(errors());
 app.use(errorHandler);
 

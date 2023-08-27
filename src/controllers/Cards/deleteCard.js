@@ -1,6 +1,6 @@
 import card from "../../models/card.js";
-import { NotFoundIdError } from "../../middlewares/Errors/notFoundId.js";
-import { NotEnoughRightsError } from "../../middlewares/Errors/notEnoughRightsError.js";
+import { NotFoundIdError } from "../../middlewares/Errors/customErrors/notFoundId.js";
+import { NotEnoughRightsError } from "../../middlewares/Errors/customErrors/notEnoughRightsError.js";
 
 const deleteCard = async (req, res, next) => {
   const { cardId } = req.params;

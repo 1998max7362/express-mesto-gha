@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { NotAuthorizedError } from "./Errors/NotAuthorizedError.js";
+import { NotAuthorizedError } from "./Errors/customErrors/NotAuthorizedError.js";
 
 const { SECRET_KEY = "some-secret-key" } = process.env;
 

@@ -8,6 +8,7 @@ const allowedCors = [
   "https://localhost:3001/",
 ];
 
+// eslint-disable-next-line consistent-return
 const corsAllow = (req, res, next) => {
   res.header(
     "Access-Control-Allow-Headers",

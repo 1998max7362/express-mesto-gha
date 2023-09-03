@@ -9,7 +9,7 @@ const updateAvatar = async (req, res, next) => {
       { avatar },
       { runValidators: true, new: true },
     );
-    res.send({ user: newUser });
+    res.send(newUser);
   } catch (err) {
     next(err);
   }

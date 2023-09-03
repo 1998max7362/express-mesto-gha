@@ -9,7 +9,7 @@ const updateProfile = async (req, res, next) => {
       { name, about },
       { runValidators: true, new: true },
     );
-    res.send({ user: newUser });
+    res.send(newUser);
   } catch (err) {
     next(err);
   }

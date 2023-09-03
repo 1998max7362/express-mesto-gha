@@ -20,7 +20,7 @@ const loginUser = async (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       })
-      .send({ message: "Авторизация прошла успешно" });
+      .send({ message: "Авторизация прошла успешно", token }); // Добавил токен в тело, чтоб не переделывать фронт под куки
   } catch (err) {
     next(err);
   }

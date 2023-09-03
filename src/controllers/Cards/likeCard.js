@@ -13,7 +13,7 @@ const likeCard = async (req, res, next) => {
     if (!newCard) {
       throw new NotFoundIdError("card");
     }
-    res.send({ card: newCard });
+    res.send(newCard);
   } catch (err) {
     next(err);
   }

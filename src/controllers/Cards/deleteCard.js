@@ -14,7 +14,7 @@ const deleteCard = async (req, res, next) => {
       throw new NotEnoughRightsError();
     }
     const removedCard = await card.deleteOne({ _id: cardId });
-    res.send(removedCard);
+    res.send({ removedCard, message: "Пост удалён" });
   } catch (err) {
     next(err);
   }

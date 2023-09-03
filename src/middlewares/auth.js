@@ -1,7 +1,11 @@
 import jwt from "jsonwebtoken";
 import NotAuthorizedError from "./Errors/customErrors/NotAuthorizedError.js";
 
-const { SECRET_KEY = "some-secret-key" } = process.env;
+const { NODE_ENV = "dev", SECRET_KEY = "some-secret-key" } = process.env;
+let jwtSecret = SECRET_KEY;
+if (NODE_ENV !== "production") {
+  jwtSecret = "dev_secret";
+}
 
 const auth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -9,7 +13,7 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, SECRET_KEY);
+    payload = jwt.verify(token, jwtSecret);
   } catch (err) {
     throw new NotAuthorizedError();
   }
